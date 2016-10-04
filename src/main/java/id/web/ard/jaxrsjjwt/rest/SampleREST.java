@@ -11,7 +11,6 @@ import id.web.ard.jaxrsjjwt.model.Sample;
 import id.web.ard.jaxrsjjwt.service.SampleService;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -27,7 +26,6 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Ardiansyah <ard333.ardiansyah@gmail.com>
  */
-@Stateless
 @Path("/sample")
 public class SampleREST {
 	
