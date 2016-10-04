@@ -21,7 +21,7 @@
 			<version>4.3.1.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+	    <dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
@@ -83,5 +83,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
 </project>
