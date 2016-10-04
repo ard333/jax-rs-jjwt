@@ -26,22 +26,21 @@ import javax.validation.constraints.Size;
 @Table(name = "sample")
 @NamedQueries({
 	@NamedQuery(name = "Sample.findAll", query = "SELECT s FROM Sample s"),
-	@NamedQuery(name = "Sample.findById", query = "SELECT s FROM Sample s WHERE s.id = :id"),
-	@NamedQuery(name = "Sample.findByContent", query = "SELECT s FROM Sample s WHERE s.content = :content")
+	@NamedQuery(name = "Sample.findById", query = "SELECT s FROM Sample s WHERE s.id = :id")
 })
 public class Sample implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+	@Basic(optional = false)
+	@Column(name = "id")
 	private Integer id;
 	
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "content")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "content")
 	private String content;
 
 	public Sample() {

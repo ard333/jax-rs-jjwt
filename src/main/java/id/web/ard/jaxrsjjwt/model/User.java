@@ -35,27 +35,27 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "id")
 	private Integer id;
 	
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 16)
-    @Column(name = "username")
+	@NotNull
+	@Size(min = 1, max = 16)
+	@Column(name = "username")
 	private String username;
 	
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 44)
-    @Column(name = "password")
+	@NotNull
+	@Size(min = 1, max = 44)
+	@Column(name = "password")
 	private String password;
 	
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 16)
-    @Column(name = "role")
+	@NotNull
+	@Size(min = 1, max = 16)
+	@Column(name = "role")
 	private String role;
 
 	public User() {
