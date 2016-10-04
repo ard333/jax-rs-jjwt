@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,10 +27,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "user")
 @NamedQueries({
-	@NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-	@NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
-	@NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
-	@NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role")
+	@NamedQuery(name = "User.login", query = "SELECT u.role FROM User u WHERE u.username = :username AND u.password = :password")
 })
 public class User implements Serializable {
 
@@ -53,10 +52,10 @@ public class User implements Serializable {
 	private String password;
 	
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 16)
-	@Column(name = "role")
-	private String role;
+    @NotNull
+    @Column(name = "role")
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public User() {
 	}
@@ -65,7 +64,7 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public User(Integer id, String username, String password, String role) {
+	public User(Integer id, String username, String password, Role role) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -96,11 +95,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

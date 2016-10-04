@@ -5,6 +5,8 @@
 
 package id.web.ard.jaxrsjjwt.rest;
 
+import id.web.ard.jaxrsjjwt.auth.Secured;
+import id.web.ard.jaxrsjjwt.model.Role;
 import id.web.ard.jaxrsjjwt.model.Sample;
 import id.web.ard.jaxrsjjwt.service.SampleService;
 import java.util.List;
@@ -33,12 +35,14 @@ public class SampleREST {
 	private SampleService sampleService;
 
 	@POST
+	@Secured({Role.ADMIN})
     @Consumes(MediaType.APPLICATION_JSON)
 	public void create(@Valid Sample entity) {
 		sampleService.create(entity);
 	}
 
 	@PUT
+	@Secured({Role.ADMIN})
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
 	public void edit(@PathParam("id") Integer id, @Valid Sample entity) {
@@ -46,12 +50,14 @@ public class SampleREST {
 	}
 
 	@DELETE
+	@Secured({Role.ADMIN})
     @Path("/{id}")
 	public void remove(@PathParam("id") Integer id) {
 		sampleService.remove(sampleService.find(id));
 	}
 
 	@GET
+	@Secured
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
 	public Sample find(@PathParam("id") Integer id) {
@@ -59,6 +65,7 @@ public class SampleREST {
 	}
 
 	@GET
+	@Secured({Role.ADMIN, Role.USER})
     @Produces(MediaType.APPLICATION_JSON)
 	public List<Sample> findAll() {
 		return sampleService.findAll();
