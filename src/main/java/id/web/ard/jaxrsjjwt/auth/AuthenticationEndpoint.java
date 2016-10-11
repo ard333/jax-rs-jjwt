@@ -8,6 +8,7 @@ package id.web.ard.jaxrsjjwt.auth;
 import id.web.ard.jaxrsjjwt.service.UserService;
 import java.util.Calendar;
 import javax.ejb.EJB;
+import javax.json.Json;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -34,7 +35,10 @@ public class AuthenticationEndpoint {
 		String role = userService.login(username, password);
 		
 		if (role!=null) {
-			return Response.ok(new Token(createToken(username, role)), MediaType.APPLICATION_JSON).build();
+			return Response.ok(
+				Json.createObjectBuilder().add("token", createToken(username, role)).build(),
+				MediaType.APPLICATION_JSON
+			).build();
 		} else {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
@@ -46,16 +50,4 @@ public class AuthenticationEndpoint {
 		return TokenServices.createToken(username, role, cal.getTimeInMillis());
 	}
 	
-	private class Token {
-		private String token;
-		public Token(String token) {
-			this.token = token;
-		}
-		public String getToken() {
-			return token;
-		}
-		public void setToken(String token) {
-			this.token = token;
-		}
-	}
 }

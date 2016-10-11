@@ -44,7 +44,7 @@ public class TokenServices {
 			.requireSubject(claims.getSubject())
 			.setSigningKey(signingKey)
 			.parseClaimsJws(token);
-			
+		
 		return role;
 	}
 	

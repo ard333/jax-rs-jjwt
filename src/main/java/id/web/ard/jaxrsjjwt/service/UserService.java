@@ -27,12 +27,12 @@ public class UserService extends AbstractService<User> {
 	}
 	
 	public String login(String username, String password) {
-		TypedQuery<Role> loginQuery = super.getEntityManager().createNamedQuery("User.login", Role.class);
+		TypedQuery<String> loginQuery = super.getEntityManager().createNamedQuery("User.login", String.class);
 		loginQuery.setParameter("username", username);
 		loginQuery.setParameter("password", hashPassword(password.toCharArray()));
 		
 		try {
-			String role = String.valueOf(loginQuery.getSingleResult());
+			String role = loginQuery.getSingleResult();
 			return role;
 		} catch (Exception e) {
 			return null;
